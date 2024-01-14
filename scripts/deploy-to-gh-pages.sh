@@ -4,7 +4,7 @@
 set -e
 
 git config user.name "xfeelingofxse"
-git config user.email "andreypachin2014@gmail.com"
+git config user.email "145387755+xfeelingofxse@users.noreply.github.com"
 
 echo "Start to deploy..."
 
