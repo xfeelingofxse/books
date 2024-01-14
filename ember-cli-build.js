@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
@@ -10,6 +11,18 @@ module.exports = function(defaults) {
     }
   });
 
+  const js = funnel('node_modules/bootstrap/dist/js', {
+    include: ['*.js'],
+    destDir: 'bootstrap/js'
+  });
+
+  const css = funnel('node_modules/bootstrap/dist/css', {
+    include: ['*.min.css'],
+    destDir: 'bootstrap/css'
+  });
+
+  // app.import(['node_modules/bootstrap/dist/js/*.css','node_modules/bootstrap/dist/js/*.map']);
+  // app.import('node_modules/bootstrap/dist/css/*.js');
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
@@ -23,5 +36,5 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return app.toTree([js, css]);
 };
